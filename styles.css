@@ -1,0 +1,72 @@
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, sans-serif;
+  background: #ffe6ef;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+}
+
+.buttons {
+  position: relative;
+  width: 300px;
+  height: 150px;
+  margin-top: 30px;
+}
+
+#yesBtn {
+  padding: 12px 24px;
+  font-size: 16px;
+}
+
+#noBtn {
+  position: absolute;
+  left: 180px;
+  top: 0;
+  padding: 12px 24px;
+  font-size: 16px;
+  transition: transform 0.15s ease; /* optional smoothness */
+}
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+#overlay.hidden {
+  display: none;
+}
+
+.popup {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  animation: pop 0.3s ease-out;
+}
+
+.popup {
+ min-width: 1000px;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
