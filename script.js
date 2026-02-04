@@ -1,6 +1,7 @@
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 let speed = 1;
+let growCount = 0;
 const moveButton = () => {
   const container = noBtn.parentElement;
 
@@ -18,6 +19,10 @@ const moveButton = () => {
   //   noBtn.style.left = `${randomX}px`;
   //   noBtn.style.top = `${randomY}px`;
   noBtn.style.transform = `translate(${offset}px, ${offset}px)`;
+  growCount++;
+
+  const scale = Math.min(1 + growCount * 0.15, 3); // max 3x size
+  yesBtn.style.transform = `scale(${scale})`;
 };
 
 noBtn.addEventListener("mouseenter", moveButton);

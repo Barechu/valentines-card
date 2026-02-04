@@ -57,7 +57,7 @@ body {
 }
 
 .popup {
- min-width: 1000px;
+ min-width: 90vw;
 }
 
 @keyframes pop {
