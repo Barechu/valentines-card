@@ -1,33 +1,61 @@
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
+const buttonsArea = document.getElementById("buttonsArea");
+const noWrapper = document.getElementById("noWrapper");
+const messages = [
+  "Pwease? 🥺",
+  "Cmon dont be shy 😈",
+  "I'll buy you ichigo sando😇",
+  "Think again 😤",
+  "You want YES 😏",
+];
+
+let msgIndex = 0;
 let speed = 1;
 let growCount = 0;
+
+function showMessage() {
+  noMessage.textContent = messages[msgIndex % messages.length];
+  msgIndex++;
+  noWrapper.classList.add("show-message");
+}
+
 const moveButton = () => {
-  const container = noBtn.parentElement;
+  // const container = noBtn.parentElement;
 
-  const containerRect = container.getBoundingClientRect();
-  const btnRect = noBtn.getBoundingClientRect();
+  // const containerRect = container.getBoundingClientRect();
+  // const btnRect = noBtn.getBoundingClientRect();
 
-  const maxX = containerRect.width - btnRect.width;
-  const maxY = containerRect.height - btnRect.height;
+  // const maxX = containerRect.width - btnRect.width;
+  // const maxY = containerRect.height - btnRect.height;
+  const areaRect = buttonsArea.getBoundingClientRect();
+  const wrapperRect = noWrapper.getBoundingClientRect();
 
+  const maxX = areaRect.width - wrapperRect.width;
+  const maxY = areaRect.height - wrapperRect.height;
   speed += 0.2;
-  //   const randomX = Math.random() * maxX * speed;
-  //   const randomX = Math.random() * maxX;
-  //   const randomY = Math.random() * maxY;
+
   const offset = Math.random() * maxX * speed;
-  //   noBtn.style.left = `${randomX}px`;
-  //   noBtn.style.top = `${randomY}px`;
-  noBtn.style.transform = `translate(${offset}px, ${offset}px)`;
+
+  noWrapper.style.transform = `translate(${offset}px, ${offset}px)`;
   growCount++;
 
   const scale = Math.min(1 + growCount * 0.15, 3); // max 3x size
   yesBtn.style.transform = `scale(${scale})`;
 };
 
-noBtn.addEventListener("mouseenter", moveButton);
+noWrapper.addEventListener("mouseenter", () => {
+  (moveButton(), showMessage());
+});
 
-noBtn.addEventListener("touchstart", moveButton);
+noWrapper.addEventListener(
+  "touchstart",
+  (e) => {
+    e.preventDefault();
+    (moveButton(), showMessage());
+  },
+  { passive: false },
+);
 
 yesBtn.addEventListener("click", () => {
   document.getElementById("overlay").classList.remove("hidden");

@@ -1,23 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Playwrite+NZ+Basic:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+NZ+Basic:wght@100..400&display=swap');
+
 body {
   height: 100vh;
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: system-ui, sans-serif;
+ font-family: "Playwrite NZ Basic", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
   background: #ffe6ef;
 }
 
 .container {
   position: relative;
   text-align: center;
+  width: 60vw;
 }
 
+button {
+  background-color: #F49BAB;
+  color: white;
+  border: none;
+  border-radius: 1rem;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #F564A9;
+}
 .buttons {
   position: relative;
-  width: 300px;
-  height: 150px;
+  width: 350px;
+  /* height: 150px; */
   margin-top: 30px;
+  margin: auto;
+      display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.no-wrapper {
+  position: absolute;
+  left: 200px;
+  top: 0;
+}
+
+#noBtn {
+  padding: 12px 24px;
+}
+
+.no-message {
+  position: absolute;
+  bottom: 100%;          /* sit above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  background: white;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  white-space: nowrap;
+  pointer-events: none; /* important */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.no-wrapper.show-message .no-message {
+  opacity: 1;
 }
 
 #yesBtn {
@@ -25,14 +78,14 @@ body {
   font-size: 16px;
 }
 
-#noBtn {
+/* #noBtn {
   position: absolute;
   left: 180px;
   top: 0;
   padding: 12px 24px;
   font-size: 16px;
-  transition: transform 0.15s ease; /* optional smoothness */
-}
+  transition: transform 0.15s ease;
+} */
 
 #overlay {
   position: fixed;
