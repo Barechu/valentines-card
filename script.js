@@ -20,6 +20,26 @@ function showMessage() {
   noWrapper.classList.add("show-message");
 }
 
+function moveNo() {
+  const vv = window.visualViewport;
+  const vw = vv?.width ?? window.innerWidth;
+  const vh = vv?.height ?? window.innerHeight;
+  const ox = vv?.offsetLeft ?? 0;
+  const oy = vv?.offsetTop ?? 0;
+
+  const r = noWrapper.getBoundingClientRect();
+  const pad = 8;
+
+  const maxX = Math.max(pad, ox + vw - r.width - pad);
+  const maxY = Math.max(pad, oy + vh - r.height - pad);
+
+  const x = pad + Math.random() * Math.max(0, maxX - pad);
+  const y = pad + Math.random() * Math.max(0, maxY - pad);
+
+  noWrapper.style.left = `${x}px`;
+  noWrapper.style.top = `${y}px`;
+}
+
 const moveButton = () => {
   const btnRect = noWrapper.getBoundingClientRect();
   // Viewport bounds
@@ -57,7 +77,7 @@ noWrapper.addEventListener(
   "touchstart",
   (e) => {
     e.preventDefault();
-    (moveButton(), showMessage());
+    (moveNo(), showMessage());
   },
   { passive: false },
 );
