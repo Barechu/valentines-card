@@ -46,6 +46,7 @@ button:hover {
   position: absolute;
   left: 200px;
   top: 0;
+  transition: left .15s ease-out, top .15s ease-out;
 }
 
 #noBtn {

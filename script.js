@@ -21,23 +21,28 @@ function showMessage() {
 }
 
 const moveButton = () => {
-  // const container = noBtn.parentElement;
+  const btnRect = noWrapper.getBoundingClientRect();
+  // Viewport bounds
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
 
-  // const containerRect = container.getBoundingClientRect();
-  // const btnRect = noBtn.getBoundingClientRect();
+  //A little padding from edges
+  const pad = 8;
 
-  // const maxX = containerRect.width - btnRect.width;
-  // const maxY = containerRect.height - btnRect.height;
-  const areaRect = buttonsArea.getBoundingClientRect();
-  const wrapperRect = noWrapper.getBoundingClientRect();
+  // Allowed range for the element's top-left position (in viewport coords)
+  const minLeft = pad;
+  const minTop = pad;
+  const maxLeft = vw - btnRect.width - pad;
+  const maxTop = vh - btnRect.height - pad;
 
-  const maxX = areaRect.width - wrapperRect.width;
-  const maxY = areaRect.height - wrapperRect.height;
-  speed += 0.2;
+  // Random position within viewport
+  const left = minLeft + Math.random() * Math.max(0, maxLeft - minLeft);
+  const top = minTop + Math.random() * Math.max(0, maxTop - minTop);
 
-  const offset = Math.random() * maxX * speed;
-
-  noWrapper.style.transform = `translate(${offset}px, ${offset}px)`;
+  // Position it using fixed coords so it's always viewport-relative
+  noWrapper.style.position = "fixed";
+  noWrapper.style.left = `${left}px`;
+  noWrapper.style.top = `${top}px`;
   growCount++;
 
   const scale = Math.min(1 + growCount * 0.15, 3); // max 3x size
